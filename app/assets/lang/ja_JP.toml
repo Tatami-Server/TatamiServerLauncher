@@ -180,7 +180,7 @@ javaDownloadPrepare = "Java ダウンロードを準備中.."
 javaDownloadFailureTitle = "Java のダウンロード中にエラーが発生しました"
 javaDownloadFailureText = "詳細はコンソール（CTRL + Shift + i）を確認してください。"
 javaRequired = "起動には<br>Java が必要です"
-javaRequiredMessage = '起動には有効な Java {major} の x64 インストールが必要です。<br><br>手動で Java をインストールする方法は、<a href="https://github.com/dscalzi/HeliosLauncher/wiki/Java-Management#manually-installing-a-valid-version-of-java">Java Management Guide</a> を参照してください。'
+javaRequiredMessage = '起動には有効な Java {major} の x64 インストールが必要です。<br><br>手動で Java をインストールする方法は、<a href="https://github.com/Tatami-Server/TatamiServerLauncher/wiki/Java-Management#manually-installing-a-valid-version-of-java">Java Management Guide</a> を参照してください。'
 javaRequiredDismiss = "理解しました"
 javaRequiredCancel = "戻る"
 
@@ -203,7 +203,7 @@ downloadingFiles = "ファイルをダウンロード中.."
 errorDuringFileDownloadTitle = "ファイルダウンロード中にエラーが発生しました"
 preparingToLaunch = "起動準備中.."
 launchingGame = "ゲームを起動中.."
-launchWrapperNotDownloaded = '主要ファイル LaunchWrapper のダウンロードに失敗したため、ゲームを起動できません。<br><br>この問題を解決するには、ウイルス対策ソフトを一時的に無効化して再度起動してください。<br><br>可能であれば、使用しているウイルス対策ソフト名を添えて <a href="https://github.com/dscalzi/HeliosLauncher/issues">Issue を報告</a> してください。こちらから連絡し、改善を試みます。'
+launchWrapperNotDownloaded = '主要ファイル LaunchWrapper のダウンロードに失敗したため、ゲームを起動できません。<br><br>この問題を解決するには、ウイルス対策ソフトを一時的に無効化して再度起動してください。<br><br>可能であれば、使用しているウイルス対策ソフト名を添えて <a href="https://github.com/Tatami-Server/TatamiServerLauncher/issues">Issue を報告</a> してください。こちらから連絡し、改善を試みます。'
 doneEnjoyServer = "完了しました。サーバーをお楽しみください！"
 checkConsoleForDetails = "詳細はコンソール（CTRL + Shift + i）を確認してください。"
 

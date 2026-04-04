@@ -2,6 +2,13 @@ appId: 'tatamiserverlauncher'
 productName: 'TatamiServer Launcher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
+publish:
+  - provider: 'github'
+    owner: 'Tatami-Server'
+    repo: 'TatamiServerLauncher'
+    releaseType: 'release'
+    vPrefixedTagName: false
+
 copyright: 'Copyright © 2018-2026 Daniel Scalzi'
 
 asar: true
