@@ -18,7 +18,9 @@ LangLoader.setupLanguage()
 
 // Setup auto updater.
 function initAutoUpdater(event, data) {
+    autoUpdater.disableWebInstaller = true
 
+    
     if(data){
         autoUpdater.allowPrerelease = true
     } else {
@@ -28,24 +30,30 @@ function initAutoUpdater(event, data) {
     
     if(isDev){
         autoUpdater.autoInstallOnAppQuit = false
-        autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml')
+        autoUpdater.forceDevUpdateConfig = true
+        //autoUpdater.updateConfigPath = path.join(__dirname, 'dev-app-update.yml')
     }
     if(process.platform === 'darwin'){
         autoUpdater.autoDownload = false
     }
     autoUpdater.on('update-available', (info) => {
+        console.log('Update available', info)
         event.sender.send('autoUpdateNotification', 'update-available', info)
     })
     autoUpdater.on('update-downloaded', (info) => {
+        console.log('Update downloaded', info)
         event.sender.send('autoUpdateNotification', 'update-downloaded', info)
     })
     autoUpdater.on('update-not-available', (info) => {
+        console.log('No update available', info)
         event.sender.send('autoUpdateNotification', 'update-not-available', info)
     })
     autoUpdater.on('checking-for-update', () => {
+        console.log('Checking for update...')
         event.sender.send('autoUpdateNotification', 'checking-for-update')
     })
     autoUpdater.on('error', (err) => {
+        console.error('Error during update check..', err)
         event.sender.send('autoUpdateNotification', 'realerror', err)
     }) 
 }
@@ -59,7 +67,7 @@ ipcMain.on('autoUpdateAction', (event, arg, data) => {
             event.sender.send('autoUpdateNotification', 'ready')
             break
         case 'checkForUpdate':
-            autoUpdater.checkForUpdates()
+            autoUpdater.checkForUpdatesAndNotify()
                 .catch(err => {
                     event.sender.send('autoUpdateNotification', 'realerror', err)
                 })

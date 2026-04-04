@@ -1455,29 +1455,18 @@ function populateReleaseNotes(){
     $.ajax({
         url: 'https://github.com/Tatami-Server/TatamiServerLauncher/releases.atom',
         success: (data) => {
-            const currentVersion = remote.app.getVersion()
-            const versionCandidates = new Set([currentVersion, `v${currentVersion}`])
+            const version = 'v' + remote.app.getVersion()
             const entries = $(data).find('entry')
             
             for(let i=0; i<entries.length; i++){
                 const entry = $(entries[i])
                 let id = entry.find('id').text()
                 id = id.substring(id.lastIndexOf('/')+1)
-                const linkHref = entry.find('link').attr('href') || ''
-                const linkTag = linkHref.substring(linkHref.lastIndexOf('/')+1)
-                const titleText = entry.find('title').text() || ''
 
-                const isVersionMatch =
-                    versionCandidates.has(id)
-                    || versionCandidates.has(linkTag)
-                    || titleText.startsWith(`${currentVersion}:`)
-                    || titleText.startsWith(`v${currentVersion}:`)
-
-                if(isVersionMatch){
+                if(id === version){
                     settingsAboutChangelogTitle.innerHTML = entry.find('title').text()
                     settingsAboutChangelogText.innerHTML = entry.find('content').text()
                     settingsAboutChangelogButton.href = entry.find('link').attr('href')
-                    break
                 }
             }
 
@@ -1550,10 +1539,8 @@ function populateSettingsUpdateInformation(data){
         settingsUpdateChangelogCont.style.display = 'none'
         populateVersionInformation(remote.app.getVersion(), settingsUpdateVersionValue, settingsUpdateVersionTitle, settingsUpdateVersionCheck)
         settingsUpdateButtonStatus(Lang.queryJS('settings.updates.checkForUpdatesButton'), false, () => {
-            if(!isDev){
-                ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
-                settingsUpdateButtonStatus(Lang.queryJS('settings.updates.checkingForUpdatesButton'), true)
-            }
+            ipcRenderer.send('autoUpdateAction', 'checkForUpdate')
+            settingsUpdateButtonStatus(Lang.queryJS('settings.updates.checkingForUpdatesButton'), true)
         })
     }
 }
