@@ -135,8 +135,10 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
     msftAuthWindow = new BrowserWindow({
         title: LangLoader.queryJS('index.microsoftLoginTitle'),
         backgroundColor: '#222222',
-        width: 520,
-        height: 600,
+        width: 950,
+        height: 550,
+        minWidth: 800,
+        minHeight: 500,
         frame: true,
         icon: getPlatformIcon('SealCircle')
     })
