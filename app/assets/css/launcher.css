@@ -27,42 +27,6 @@
     --frame-bar-height: calc(22px * var(--ui-scale));
 }
 
-@media (min-width: 1200px) {
-    :root {
-        --ui-scale: 1;
-    }
-}
-
-@media (min-width: 1400px) {
-    :root {
-        --ui-scale: 1;
-    }
-}
-
-@media (min-width: 1700px) {
-    :root {
-        --ui-scale: 1;
-    }
-}
-
-@media (min-width: 1920px) {
-    :root {
-        --ui-scale: 1;
-    }
-}
-
-@media (min-width: 2300px) {
-    :root {
-        --ui-scale: 1;
-    }
-}
-
-@media (min-width: 2560px) {
-    :root {
-        --ui-scale: 1;
-    }
-}
-
 /*******************************************************************************
  *                                                                             *
  * Element Styles                                                              *
