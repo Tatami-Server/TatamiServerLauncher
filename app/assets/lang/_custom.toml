@@ -5,9 +5,8 @@ title = "TatamiServer Launcher"
 
 [ejs.landing]
 mediaGitHubURL = "https://github.com/Tatami-Server/TatamiServerLauncher"
-mediaXURL = "#"
-mediaInstagramURL = "#"
-mediaYouTubeURL = "#"
+mediaXURL = "https://x.com/TatamiServer"
+mediaYouTubeURL = "https://www.youtube.com/@tatamiserver"
 mediaDiscordURL = "https://disco.tatamiserver.com"
 
 [ejs.settings]
