@@ -2,7 +2,7 @@ const remoteMain = require('@electron/remote/main')
 remoteMain.initialize()
 
 // Requirements
-const { app, BrowserWindow, ipcMain, Menu, shell } = require('electron')
+const { app, BrowserWindow, ipcMain, Menu, shell, screen } = require('electron')
 const autoUpdater                       = require('electron-updater').autoUpdater
 const ejse                              = require('ejs-electron')
 const fs                                = require('fs')
@@ -135,8 +135,10 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGIN, (ipcEvent, ...arguments_) => {
     msftAuthWindow = new BrowserWindow({
         title: LangLoader.queryJS('index.microsoftLoginTitle'),
         backgroundColor: '#222222',
-        width: 520,
-        height: 600,
+        width: 950,
+        height: 550,
+        minWidth: 800,
+        minHeight: 500,
         frame: true,
         icon: getPlatformIcon('SealCircle')
     })
@@ -230,11 +232,27 @@ ipcMain.on(MSFT_OPCODE.OPEN_LOGOUT, (ipcEvent, uuid, isLastAccount) => {
 // be closed automatically when the JavaScript object is garbage collected.
 let win
 
+function resolveInitialWindowSize() {
+    const defaultWidth = 1080
+    const defaultHeight = 610
+    const display = screen.getPrimaryDisplay()
+    const { width, height } = display.workAreaSize
+
+    return {
+        width: Math.max(800, Math.min(defaultWidth, width)),
+        height: Math.max(500, Math.min(defaultHeight, height))
+    }
+}
+
 function createWindow() {
 
+    const initialSize = resolveInitialWindowSize()
+
     win = new BrowserWindow({
-        width: 980,
-        height: 552,
+        width: initialSize.width,
+        height: initialSize.height,
+        minWidth: 800,
+        minHeight: 500,
         icon: getPlatformIcon('SealCircle'),
         frame: false,
         webPreferences: {
