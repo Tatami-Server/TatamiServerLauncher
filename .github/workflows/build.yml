@@ -40,5 +40,5 @@ jobs:
       - name: Upload build result
         uses: actions/upload-artifact@v5
         with:
-          name: build-files
+          name: build-files-${{ matrix.os }}
           path: dist
