@@ -2928,11 +2928,12 @@ input:checked + .toggleSwitchSlider:before {
 }
 
 #igusa {
-    height: 250px;
+    height: clamp(250px, 50vh, 500px);
     width: auto;
     position: relative;
-    top: 40px;
-    left: -30px;
+    top: clamp(20px, 6vh, 50px);
+    left: clamp(-30px, -2.4vw, -10px);
+    max-width: min(28vw, 250px);
     /* border: 2px solid white; */
     box-sizing: border-box;
     /* border-radius: 50%; */
@@ -2974,29 +2975,34 @@ input:checked + .toggleSwitchSlider:before {
     cursor: pointer;
     visibility: hidden;
     opacity: 0;
-    width: 140px;
-    height: 15px;
+    width: max-content;
+    min-width: 132px;
+    max-width: clamp(140px, 24vw, 230px);
+    min-height: 18px;
     background-color: rgb(67, 71, 48);
     color: #fff;
     text-align: center;
     border-radius: 4px;
-    padding: 2px;
+    padding: 3px 8px;
     position: absolute;
     z-index: 1;
-    top: 115%;
-    left: 50%;
+    top: calc(115% + 2px);
+    left: 6.5vw;
     transform: translateX(-50%);
     font-family: 'Avenir Medium';
-    font-size: 12px;
+    font-size: clamp(10px, 1.15vw, 12px);
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: anywhere;
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
 #updateAvailableTooltip::after {
     content: " ";
     position: absolute;
     left: 50%;
-    bottom: -70%;
-    margin-left: -5px;
-    border-width: 7px;
+    bottom: -1.6vh;
+    margin-left: -6px;
+    border-width: 0.5vw;
     border-style: solid;
     border-color: rgb(67, 71, 48) transparent transparent transparent;
 }
@@ -4076,6 +4082,14 @@ input:checked + .toggleSwitchSlider:before {
         width: auto;
     }
 
+    #updateAvailableTooltip {
+        min-width: 118px;
+        max-width: min(62vw, 180px);
+        font-size: 10px;
+        top: calc(112% + 2px);
+        padding: 2px 6px;
+    }
+
     #avatarContainer {
         height: 58px;
         width: 58px;
@@ -4190,10 +4204,6 @@ input:checked + .toggleSwitchSlider:before {
 
     #settingsNavItemsContainer {
         height: calc(100% - 36px);
-    }
-
-    #igusa {
-        display: none;
     }
 
     #user_text {
