@@ -62,7 +62,7 @@ function scheduleAdaptiveZoom(){
     })
 }
 
-webFrame.setVisualZoomLevelLimits(1, 3)
+webFrame.setVisualZoomLevelLimits(1, 1)
 applyAdaptiveZoom()
 window.addEventListener('resize', scheduleAdaptiveZoom)
 window.addEventListener('DOMContentLoaded', scheduleAdaptiveZoom)
