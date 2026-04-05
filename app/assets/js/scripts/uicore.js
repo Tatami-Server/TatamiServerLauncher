@@ -31,9 +31,41 @@ remote.getCurrentWebContents().on('devtools-opened', () => {
     console.log('%cUnless you know exactly what you\'re doing, close this window.', 'font-size: 16px')
 })
 
-// Disable zoom, needed for darwin.
-webFrame.setZoomLevel(0)
-webFrame.setVisualZoomLevelLimits(1, 1)
+// Keep a larger default UI scale and adapt it as the window grows.
+const BASE_ZOOM_WIDTH = 1080
+const BASE_ZOOM_HEIGHT = 610
+const DEFAULT_ZOOM_FACTOR = 1.12
+const MAX_ZOOM_FACTOR = 1.35
+let zoomAnimationFrame = null
+
+function resolveAdaptiveZoomFactor(){
+    const currentWindow = remote.getCurrentWindow()
+    const [contentWidth, contentHeight] = currentWindow.getContentSize()
+    const widthScale = contentWidth / BASE_ZOOM_WIDTH
+    const heightScale = contentHeight / BASE_ZOOM_HEIGHT
+    const growthScale = Math.min(widthScale, heightScale)
+    const adaptiveScale = DEFAULT_ZOOM_FACTOR * Math.pow(growthScale, 0.35)
+    return Math.max(1, Math.min(adaptiveScale, MAX_ZOOM_FACTOR))
+}
+
+function applyAdaptiveZoom(){
+    webFrame.setZoomFactor(resolveAdaptiveZoomFactor())
+}
+
+function scheduleAdaptiveZoom(){
+    if(zoomAnimationFrame != null){
+        cancelAnimationFrame(zoomAnimationFrame)
+    }
+    zoomAnimationFrame = requestAnimationFrame(() => {
+        zoomAnimationFrame = null
+        applyAdaptiveZoom()
+    })
+}
+
+webFrame.setVisualZoomLevelLimits(1, 3)
+applyAdaptiveZoom()
+window.addEventListener('resize', scheduleAdaptiveZoom)
+window.addEventListener('DOMContentLoaded', scheduleAdaptiveZoom)
 
 // Initialize auto updates in production environments.
 let updateCheckListener
@@ -181,20 +213,7 @@ document.addEventListener('readystatechange', function () {
         })
 
     } else if(document.readyState === 'complete'){
-
-        //266.01
-        //170.8
-        //53.21
-        // Bind progress bar length to length of bot wrapper
-        //const targetWidth = document.getElementById("launch_content").getBoundingClientRect().width
-        //const targetWidth2 = document.getElementById("server_selection").getBoundingClientRect().width
-        //const targetWidth3 = document.getElementById("launch_button").getBoundingClientRect().width
-
-        document.getElementById('launch_details').style.maxWidth = 266.01
-        document.getElementById('launch_progress').style.width = 170.8
-        document.getElementById('launch_details_right').style.maxWidth = 170.8
-        document.getElementById('launch_progress_label').style.width = 53.21
-        
+        // Launch detail sizing is handled in CSS to support responsive layouts.
     }
 
 }, false)
