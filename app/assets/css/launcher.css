@@ -1153,6 +1153,7 @@ body, button {
 #settingsNavContentBottom {
     position: static;
     margin-top: auto;
+    margin-bottom: 20px;
     width: 100%;
     padding-top: 8px;
 }
@@ -4086,11 +4087,6 @@ input:checked + .toggleSwitchSlider:before {
 
     #settingsContainerRight {
         width: 70%;
-    }
-
-    .settingsNavItem,
-    #settingsNavDone {
-        padding: 0px 12px;
     }
 
     #settingsNavHeaderText {
