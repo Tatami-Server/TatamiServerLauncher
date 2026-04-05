@@ -36,3 +36,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run dist
         shell: bash
+      
+      - name: Upload build result
+        uses: actions/upload-artifact@v5
+        with:
+          name: build-files
+          path: dist
