@@ -8,8 +8,9 @@
 
 <p align="center">Join modded servers without worrying about installing Java, Forge, or other mods. We'll handle that for you.</p>
 
-![Screenshot 1](https://github.com/user-attachments/assets/5dc95354-7491-4b77-9353-e65e958389b4)
-![Screenshot 2](https://github.com/user-attachments/assets/d0fc5eff-28ed-4aa5-951a-2a7b38b2744c)
+![Screenshot 1](https://github.com/user-attachments/assets/c92bfa6c-c753-4176-b667-c8b571b7b0ae)
+![Screenshot 2](https://github.com/user-attachments/assets/ab03aa53-03a2-473c-98b9-1b2d6b5604d9)
+
 
 
 ## Features
